@@ -8,14 +8,13 @@ var express = require('express'),
     port = 3000,
     app = express();
 
-// Server routes
 app.get('/', function (req, res) {
+	// '/?C will play a C note. ?Db plays a D flat note'
     var note = url.parse(req.url).query;
 
     shell.exec('play -qn synth 2 pluck ' + note, {async:true});
     res.status(200).send('Playing a note on the server!');
 });
 
-// Start server on given port
 app.listen(port);
 console.log('Synth started at http://localhost:' + port + '/');
