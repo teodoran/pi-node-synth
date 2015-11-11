@@ -1,0 +1,16 @@
+{
+  "name": "pi-node-synth",
+  "version": "1.0.0",
+  "description": "An experiment playing linux synth sounds from a web server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "teodoran",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3",
+    "shelljs": "^0.5.3"
+  }
+}
