@@ -16,6 +16,14 @@ var express = require('express'),
 		'F': ['F3', 'A3', 'C3'],
 		'G': ['G3', 'B3', 'D3'],
 		'Am': ['A3', 'C3', 'E3']
+	},
+
+	drums = {
+		'clap': __dirname + '/samples/clap-808.wav',
+		'crash': __dirname + '/samples/crash-noise.wav',
+		'hihat':__dirname + '/samples/hihat-electro.wav',
+		'kick': __dirname + '/samples/kick-808.wav',
+		'snare': __dirname + '/samples/snare-smasher.wav'
 	};
 
 app.use('/static', express.static(__dirname + '/node_modules'));
@@ -32,6 +40,10 @@ app.get('/chords', function (req, res) {
 	res.sendFile(__dirname + '/chords.html');
 });
 
+app.get('/drums', function (req, res) {
+	res.sendFile(__dirname + '/drums.html');
+});
+
 io.on('connection', function (socket){
     console.log('a user connected');
 
@@ -46,6 +58,13 @@ io.on('connection', function (socket){
 			command = 'play -qn synth sin ' + chord[0] + ' sin ' + chord[1] + ' sin ' + chord[2] + ' delay 0 .01 .02 remix - fade 0 2 .1 norm -1';
 
 		shell.exec(command, {async: true});
+	});
+
+	socket.on('beat', function (msg) {
+		var drum = drums[msg],
+			command = 'play -q ' + drum;
+
+		shell.exec(command, {async: true, silent: true});
 	});
 
     socket.on('disconnect', function() {
