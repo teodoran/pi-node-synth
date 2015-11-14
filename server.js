@@ -31,6 +31,7 @@ var express = require('express'),
 
 app.use('/static', express.static(__dirname + '/node_modules'));
 app.use('/torsk.css', express.static(__dirname + '/torsk.css'));
+app.use('/torsk.js', express.static(__dirname + '/torsk.js'));
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
@@ -41,7 +42,11 @@ app.get('/chords', function (req, res) {
 });
 
 app.get('/drums', function (req, res) {
-	res.sendFile(__dirname + '/drums.html');
+    res.sendFile(__dirname + '/drums.html');
+});
+
+app.get('/sequence', function (req, res) {
+    res.sendFile(__dirname + '/sequence.html');
 });
 
 io.on('connection', function (socket){
@@ -60,12 +65,17 @@ io.on('connection', function (socket){
         shell.exec(command, {async: true});
     });
 
-	socket.on('beat', function (msg) {
-		var drum = drums[msg],
-			command = 'play -q ' + drum;
+    socket.on('beat', function (msg) {
+        var drum = drums[msg],
+            command = 'play -q ' + drum;
 
-		shell.exec(command, {async: true, silent: true});
-	});
+        shell.exec(command, {async: true, silent: true});
+    });
+
+    socket.on('playSequence', function (msg) {
+        console.log(msg);
+        // todo play sequences.
+    });
 
     socket.on('disconnect', function() {
         console.log('a user disconnected');

@@ -9,9 +9,11 @@
     <!-- CSS -->
     <link href="/static/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="torsk.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script type="text/javascript" src="torsk.js"></script>
 </head>
 <body>
-
 <div class="container">
 
     <div class="jumbotron">
@@ -19,30 +21,16 @@
     </div>
 
     <div class="row marketing">
-        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('C')">C</button>
+        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('C5')">C5</button>
         <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('B')">H</button>
         <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('A')">A</button>
         <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('G')">G</button>
         <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('F')">F</button>
-        <button type="button" class="btn btn-default torsk-btn col-md-3"  onclick="play('E')">E</button>
+        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('E')">E</button>
         <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('D')">D</button>
-        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('C5')">C5</button>
+        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('C')">C</button>
     </div>
 
 </div>
-<script>
-    if ('addEventListener' in document) {
-        document.addEventListener('DOMContentLoaded', function() {
-            FastClick.attach(document.body);
-        }, false);
-    }
-
-    var socket = io(),
-
-            play = function (note) {
-                socket.emit('play', note);
-            };
-</script>
 </body>
-
 </html>
