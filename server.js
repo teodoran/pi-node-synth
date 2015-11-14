@@ -15,10 +15,6 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/react/', function (req, res) {
-    res.sendFile(__dirname + '/react.html');
-});
-
 io.on('connection', function (socket){
     console.log('a user connected');
 
