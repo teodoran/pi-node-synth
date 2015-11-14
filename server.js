@@ -19,6 +19,7 @@ var express = require('express'),
     };
 
 app.use('/static', express.static(__dirname + '/node_modules'));
+app.use('/torsk.css', express.static(__dirname + '/torsk.css'));
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');

@@ -6,19 +6,9 @@
     <script src="/static/fastclick/lib/fastclick.js"></script>
     <script src="/static/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 
-    <!-- Bootstrap -->
+    <!-- CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        .torsk-btn {
-            padding: 20px 30px;
-            font-size: 100px;
-            line-height: normal;
-            -webkit-border-radius: 8px;
-            -moz-border-radius: 8px;
-            border-radius: 8px;
-        }
-    </style>
+    <link href="torsk.css" rel="stylesheet">
 </head>
 <body>
 
@@ -39,20 +29,20 @@
         <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('C5')">C5</button>
     </div>
 
-    </div>
-    <script>
-        if ('addEventListener' in document) {
-            document.addEventListener('DOMContentLoaded', function() {
-                FastClick.attach(document.body);
-            }, false);
-        }
+</div>
+<script>
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
 
-        var socket = io(),
+    var socket = io(),
 
-                play = function (note) {
-                    socket.emit('play', note);
-                };
-    </script>
+            play = function (note) {
+                socket.emit('play', note);
+            };
+</script>
 </body>
 
 </html>
