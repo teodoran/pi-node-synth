@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Chords | Torsk</title>
+    <title>Sequence | Torsk</title>
     <script src="/static/fastclick/lib/fastclick.js"></script>
     <script src="/static/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 
@@ -21,10 +21,11 @@
     </div>
 
     <div class="row marketing">
-        <button type="button" class="btn btn-default torsk-btn col-md-12" onclick="playChord('C')">-</button>
-        <button type="button" class="btn btn-default torsk-btn col-md-12" onclick="playChord('G')">-</button>
-        <button type="button" class="btn btn-default torsk-btn col-md-12" onclick="playChord('Am')">-</button>
-        <button type="button" class="btn btn-default torsk-btn col-md-12" onclick="playChord('F')">-</button>
+        <p>possible notes: c,d,e,f,g,a,b,c </p>
+        <form>
+            <input id="chordSequence" type="text" name="sequence"/>
+            <button type="button" onclick="playSequence()">Play sequence</button>
+        </form>
     </div>
 
 </div>
