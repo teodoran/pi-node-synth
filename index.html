@@ -1,53 +1,48 @@
 <!doctype html>
 <html>
-    <head>
-        <title>Synth</title>
-        <script src="/static/fastclick/lib/fastclick.js"></script>
-        <script src="/static/socket.io/node_modules/socket.io-client/socket.io.js"></script>
-        <style>
-            table, td, th {
-                border: 2px solid black;
-            }
-            td {
-                background-color: green;
-            }
-        </style>
-    </head>
-    <body>
-        <table width="100%" height="300px">
-            <tr>
-                <td onclick="play('A')"></td>
-                <td onclick="play('B')"></td>
-                <td onclick="play('C')"></td>
-            </tr>
-            <tr>
-                <td onclick="play('D')"></td>
-                <td onclick="play('E')"></td>
-                <td onclick="play('F')"></td>
-            </tr>
-            <tr>
-                <td onclick="play('G')"></td>
-                <td onclick="play('C')"></td>
-                <td onclick="play('C')"></td>
-            </tr>
-            <tr>
-                <td onclick="play('C')"></td>
-                <td onclick="play('C')"></td>
-                <td onclick="play('C')"></td>
-            </tr>
-        </table>
-        <script>
-            var socket = io(),
+<head>
+    <meta charset="utf-8">
+    <title>Synth | Torsk</title>
+    <script src="/static/fastclick/lib/fastclick.js"></script>
+    <script src="/static/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 
-                play = function (note) {
-                    socket.emit('play', note);
-                };
+    <!-- CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="torsk.css" rel="stylesheet">
+</head>
+<body>
 
-            if ('addEventListener' in document) {
-                document.addEventListener('DOMContentLoaded', function() {
-                    FastClick.attach(document.body);
-                }, false);
-            }
-        </script>
-    </body>
+<div class="container">
+
+    <div class="jumbotron">
+        <h1>Torsk-Synth! Play for Lofoten :)</h1>
+    </div>
+
+    <div class="row marketing">
+        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('C')">C</button>
+        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('B')">H</button>
+        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('A')">A</button>
+        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('G')">G</button>
+        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('F')">F</button>
+        <button type="button" class="btn btn-default torsk-btn col-md-3"  onclick="play('E')">E</button>
+        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('D')">D</button>
+        <button type="button" class="btn btn-default torsk-btn col-md-3" onclick="play('C5')">C5</button>
+    </div>
+
+</div>
+<script>
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+
+    var socket = io(),
+
+            play = function (note) {
+                socket.emit('play', note);
+            };
+</script>
+</body>
+
 </html>

@@ -27,17 +27,14 @@ var express = require('express'),
 	};
 
 app.use('/static', express.static(__dirname + '/node_modules'));
+app.use('/torsk.css', express.static(__dirname + '/torsk.css'));
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/react/', function (req, res) {
-    res.sendFile(__dirname + '/react.html');
-});
-
 app.get('/chords', function (req, res) {
-	res.sendFile(__dirname + '/chords.html');
+    res.sendFile(__dirname + '/chords.html');
 });
 
 app.get('/drums', function (req, res) {
@@ -47,18 +44,18 @@ app.get('/drums', function (req, res) {
 io.on('connection', function (socket){
     console.log('a user connected');
 
-	socket.on('play', function (msg) {
-		var command = 'play -qn synth 2 pluck ' + msg;
+    socket.on('play', function (msg) {
+        var command = 'play -qn synth 2 pluck ' + msg;
 
-		shell.exec(command, {async: true});
-	});
+        shell.exec(command, {async: true});
+    });
 
-	socket.on('chord', function (msg) {
-		var chord = chords[msg],
-			command = 'play -qn synth sin ' + chord[0] + ' sin ' + chord[1] + ' sin ' + chord[2] + ' delay 0 .01 .02 remix - fade 0 2 .1 norm -1';
+    socket.on('chord', function (msg) {
+        var chord = chords[msg],
+            command = 'play -qn synth sin ' + chord[0] + ' sin ' + chord[1] + ' sin ' + chord[2] + ' delay 0 .01 .02 remix - fade 0 2 .1 norm -1';
 
-		shell.exec(command, {async: true});
-	});
+        shell.exec(command, {async: true});
+    });
 
 	socket.on('beat', function (msg) {
 		var drum = drums[msg],
