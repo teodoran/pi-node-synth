@@ -7,6 +7,9 @@ var express = require('express'),
 	io = require('socket.io')(http),
 	url = require('url'),
 	shell = require('shelljs'),
+
+	fork = require('child_process').fork,
+	sequencerProcess = fork(__dirname + '/sequencer-process.js'),
 	
 	port = 3000,
 	chords = {
@@ -75,6 +78,51 @@ app.get('/api', function (req, res) {
 
     shell.exec('play -qn synth 2 pluck ' + note, {async: true});
     res.status(200).send('Playing a note on the server!');
+});
+
+app.get('/start', function (req, res) {
+	var p = [
+		['hihat', 'kick'],
+		['hihat'],
+		['hihat', 'snare'],
+		['hihat'],
+		['hihat'],
+		['hihat', 'kick'],
+		['hihat', 'snare'],
+		['hihat']
+	];
+
+	sequencerProcess.send({
+		pattern: p,
+		start: true
+	});
+	res.status(200).send('Started sequencer pattern 1');
+});
+
+app.get('/start2', function (req, res) {
+	var p = [
+		['hihat', 'kick', 'crash'],
+		['hihat'],
+		['hihat', 'snare'],
+		['hihat'],
+		['hihat'],
+		['hihat', 'kick'],
+		['hihat', 'snare'],
+		['hihat']
+	];
+
+	sequencerProcess.send({
+		pattern: p,
+		start: true
+	});
+	res.send('Pattern2');
+});
+
+app.get('/stop', function (req, res) {
+	sequencerProcess.send({
+		stop: true
+	});
+	res.send('Started sequencer pattern 1');
 });
 
 http.listen(port, function () {
