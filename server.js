@@ -2,29 +2,29 @@
 
 'use strict';
 var express = require('express'),
-	app = express(),
-	http = require('http').Server(app),
-	io = require('socket.io')(http),
-	url = require('url'),
-	shell = require('shelljs'),
-	
-	port = 3000,
-	chords = {
-		'C': ['C3', 'E3', 'G3'],
-		'Dm': ['D3', 'F3', 'A3'],
-		'Em': ['E3', 'G3', 'B3'],
-		'F': ['F3', 'A3', 'C3'],
-		'G': ['G3', 'B3', 'D3'],
-		'Am': ['A3', 'C3', 'E3']
-	},
+    app = express(),
+    http = require('http').Server(app),
+    io = require('socket.io')(http),
+    url = require('url'),
+    shell = require('shelljs'),
 
-	drums = {
-		'clap': __dirname + '/samples/clap-808.wav',
-		'crash': __dirname + '/samples/crash-noise.wav',
-		'hihat':__dirname + '/samples/hihat-electro.wav',
-		'kick': __dirname + '/samples/kick-808.wav',
-		'snare': __dirname + '/samples/snare-smasher.wav'
-	};
+    port = 3000,
+    chords = {
+        'C': ['C3', 'E3', 'G3'],
+        'Dm': ['D3', 'F3', 'A3'],
+        'Em': ['E3', 'G3', 'B3'],
+        'F': ['F3', 'A3', 'C3'],
+        'G': ['G3', 'B3', 'D3'],
+        'Am': ['A3', 'C3', 'E3']
+    },
+
+    drums = {
+        'clap': __dirname + '/samples/clap-808.wav',
+        'crash': __dirname + '/samples/crash-noise.wav',
+        'hihat':__dirname + '/samples/hihat-electro.wav',
+        'kick': __dirname + '/samples/kick-808.wav',
+        'snare': __dirname + '/samples/snare-smasher.wav'
+    };
 
 app.use('/static', express.static(__dirname + '/node_modules'));
 app.use('/torsk.css', express.static(__dirname + '/torsk.css'));
@@ -71,7 +71,7 @@ io.on('connection', function (socket){
 
     socket.on('playSequence', function (msg) {
         console.log(msg);
-        // todo play sequences. 
+        // todo play sequences.
     });
 
     socket.on('disconnect', function() {
