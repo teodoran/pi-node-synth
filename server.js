@@ -75,7 +75,6 @@ io.on('connection', function (socket){
 
     socket.on('playSequence', function (msg) {
         var p = msg;
-        console.log(p);
 
         arpeggiatorProcess.send({
             pattern: p,
