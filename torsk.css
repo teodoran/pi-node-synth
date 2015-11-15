@@ -6,3 +6,18 @@
     -moz-border-radius: 8px;
     border-radius: 8px;
 }
+
+.drum-btn {
+    padding: 20px 30px;
+    font-size: 60px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.torsk-checked {
+    line-height: 150px;
+    width: 70px;
+    height: 70px;
+}
