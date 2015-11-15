@@ -21,31 +21,32 @@ var express = require('express'),
         'G': ['G3', 'B4', 'D3'],
         'Am': ['A3', 'C5', 'E3']
     },
-
-    drums = {
-        'clap': __dirname + '/samples/clap-808.wav',
-        'crash': __dirname + '/samples/crash-noise.wav',
-        'hihat':__dirname + '/samples/hihat-electro.wav',
-        'kick': __dirname + '/samples/kick-808.wav',
-        'snare': __dirname + '/samples/snare-smasher.wav'
-    },
     pattern = [
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0]
-];
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0]
+    ],
+    pageCounter = 0,
+    pages = ['/synth.html', '/chords.html', '/drums.html'];
 
 app.use('/static', express.static(__dirname + '/node_modules'));
 app.use('/torsk.css', express.static(__dirname + '/torsk.css'));
 app.use('/torsk.js', express.static(__dirname + '/torsk.js'));
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+    var page = pages[pageCounter];
+
+    pageCounter = (pageCounter + 1) % 3;
+    res.sendFile(__dirname + page);
+});
+
+app.get('/synth', function (req, res) {
+    res.sendFile(__dirname + '/synth.html');
 });
 
 app.get('/chords', function (req, res) {
@@ -53,7 +54,6 @@ app.get('/chords', function (req, res) {
 });
 
 app.get('/drums', function (req, res) {
-    // return the existing pattern.
     res.sendFile(__dirname + '/drums.html');
 });
 
@@ -75,13 +75,6 @@ io.on('connection', function (socket){
             command = 'play -qn synth sin ' + chord[0] + ' sin ' + chord[1] + ' sin ' + chord[2] + ' delay 0 .01 .02 remix - fade 0 2.7 .1 norm -1';
 
         shell.exec(command, {async: true});
-    });
-
-    socket.on('beat', function (msg) {
-        var drum = drums[msg],
-            command = 'play -q ' + drum;
-
-        shell.exec(command, {async: true, silent: true});
     });
 
     socket.on('playSequence', function (msg) {
@@ -117,52 +110,6 @@ io.on('connection', function (socket){
     socket.on('disconnect', function() {
         console.log('a user disconnected');
     });
-});
-
-app.get('/api', function (req, res) {
-    // '/?C will play a C note. ?Db plays a D flat note'
-    var note = url.parse(req.url).query;
-
-    shell.exec('play -qn synth 2 pluck ' + note, {async: true});
-    res.status(200).send('Playing a note on the server!');
-});
-
-app.get('/start', function (req, res) {
-    var p = [
-        ['hihat', 'kick'],
-        ['hihat'],
-        ['hihat', 'snare'],
-        ['hihat'],
-        ['hihat'],
-        ['hihat', 'kick'],
-        ['hihat', 'snare'],
-        ['hihat']
-    ];
-
-    sequencerProcess.send({
-        pattern: p,
-        start: true
-    });
-    res.status(200).send('Started sequencer pattern 1');
-});
-
-app.get('/start2', function (req, res) {
-    var p = [
-        ['hihat', 'kick', 'crash'],
-        ['hihat'],
-        ['hihat', 'snare'],
-        ['hihat'],
-        ['hihat'],
-        ['hihat', 'kick'],
-        ['hihat', 'snare'],
-        ['hihat']
-    ];
-
-    sequencerProcess.send({
-        pattern: p,
-        start: true
-    });
-    res.status(200).send('Started sequencer pattern 1');
 });
 
 app.get('/stop', function (req, res) {

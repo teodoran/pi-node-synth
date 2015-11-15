@@ -1,8 +1,3 @@
-/**
- * Created by kiro on 14/11/15.
- */
-
-
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function() {
         FastClick.attach(document.body);
