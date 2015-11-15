@@ -14,12 +14,12 @@ var express = require('express'),
     
     port = 3000,
     chords = {
-        'C': ['C3', 'E3', 'G3'],
-        'Dm': ['D3', 'F3', 'A3'],
-        'Em': ['E3', 'G3', 'B3'],
-        'F': ['F3', 'A3', 'C3'],
-        'G': ['G3', 'B3', 'D3'],
-        'Am': ['A3', 'C3', 'E3']
+        'C': ['C3', 'E4', 'G3'],
+        'Dm': ['D3', 'F4', 'A3'],
+        'Em': ['E3', 'G4', 'B3'],
+        'F': ['F3', 'A4', 'C3'],
+        'G': ['G3', 'B4', 'D3'],
+        'Am': ['A3', 'C5', 'E3']
     },
 
     drums = {
@@ -61,7 +61,7 @@ io.on('connection', function (socket){
 
     socket.on('chord', function (msg) {
         var chord = chords[msg],
-            command = 'play -qn synth sin ' + chord[0] + ' sin ' + chord[1] + ' sin ' + chord[2] + ' delay 0 .01 .02 remix - fade 0 2 .1 norm -1';
+            command = 'play -qn synth sin ' + chord[0] + ' sin ' + chord[1] + ' sin ' + chord[2] + ' delay 0 .01 .02 remix - fade 0 2.7 .1 norm -1';
 
         shell.exec(command, {async: true});
     });
