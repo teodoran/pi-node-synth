@@ -73,8 +73,19 @@ io.on('connection', function (socket){
     });
 
     socket.on('playSequence', function (msg) {
-        console.log(msg);
-        // todo play sequences.
+        var p = msg;
+        console.log(p);
+
+		sequencerProcess.send({
+			pattern: p,
+			start: true
+		});
+    });
+
+    socket.on('stopSequence', function (msg) {
+        sequencerProcess.send({
+			stop: true
+		});
     });
 
     socket.on('disconnect', function() {
@@ -125,14 +136,14 @@ app.get('/start2', function (req, res) {
 		pattern: p,
 		start: true
 	});
-	res.send('Pattern2');
+	res.status(200).send('Started sequencer pattern 1');
 });
 
 app.get('/stop', function (req, res) {
 	sequencerProcess.send({
 		stop: true
 	});
-	res.send('Started sequencer pattern 1');
+	res.status(200).send('Stopping sequencer');
 });
 
 http.listen(port, function () {
