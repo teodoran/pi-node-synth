@@ -82,5 +82,5 @@ drums = function(){
         }
     }
     console.log("set the drums:"+pattern);
-    socket.emit('beat', pattern);
+    socket.emit('playDrumSequence', pattern);
 };
