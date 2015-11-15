@@ -18,6 +18,33 @@
 
 .torsk-checked {
     line-height: 150px;
-    width: 70px;
+    width: 100%;
     height: 70px;
+}
+
+.active {
+    opacity: 1;
+}
+
+.inactive {
+    opacity: 0.5;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+table {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+td:hover {
+    opacity: 0.2;
 }

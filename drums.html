@@ -14,69 +14,61 @@
     <script type="text/javascript" src="torsk.js"></script>
 </head>
 <body>
-
-<div class="container">
-    <div class="row marketing" onclick="drums()">
-        <div class="col-sm-12">
-            <!--<button type="button" class="btn btn-default drum-btn col-md-4" onclick="play('kick')">Kick</button>-->
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="kick-1" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="kick-2" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="kick-3" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="kick-4" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="kick-5" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="kick-6" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="kick-7" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="kick-8" /></div>
-        </div>
-        <div class="col-sm-12">
-            <!--<button type="button" class="btn btn-default drum-btn col-md-4" onclick="play('snare')">Snare</button>-->
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="snare-1" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="snare-2" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="snare-3" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="snare-4" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="snare-5" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="snare-6" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="snare-7" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="snare-8" /></div>
-        </div>
-        <div class="col-sm-12">
-            <!--<button type="button" class="btn btn-default drum-btn col-md-4" onclick="play('clap')">Clap</button>-->
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="clap-1" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="clap-2" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="clap-3" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="clap-4" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="clap-5" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="clap-6" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="clap-7" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="clap-8" /></div>
-        </div>
-        <div class="col-sm-12">
-            <!--<button type="button" class="btn btn-default drum-btn col-md-4" onclick="play('hihat')">Hihat</button>-->
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="hihat-1" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="hihat-2" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="hihat-3" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="hihat-4" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="hihat-5" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="hihat-6" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="hihat-7" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="hihat-8" /></div>
-        </div>
-        <div class="col-sm-12">
-            <!--<button type="button" class="btn btn-default drum-btn col-md-4" onclick="play('crash')">Crash</button>-->
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="crash-1" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="crash-2" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="crash-3" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="crash-4" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="crash-5" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="crash-6" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="crash-7" /></div>
-            <div class="col-sm-1"><input type="checkbox" class="torsk-checked" id="crash-8" /></div>
-        </div>
-
-        </div>
-
-    </div>
-
-</div>
+<table>
+    <tr onclick="drums()">
+        <td id="kick-1" onclick="toggleChecked('kick-1')" style="background-color: lightblue;" class="inactive"></td>
+        <td id="kick-2" onclick="toggleChecked('kick-2')" style="background-color: lightblue;" class="inactive"></td>
+        <td id="kick-3" onclick="toggleChecked('kick-3')" style="background-color: lightblue;" class="inactive"></td>
+        <td id="kick-4" onclick="toggleChecked('kick-4')" style="background-color: lightblue;" class="inactive"></td>
+        <td id="kick-5" onclick="toggleChecked('kick-5')" style="background-color: lightblue;" class="inactive"></td>
+        <td id="kick-6" onclick="toggleChecked('kick-6')" style="background-color: lightblue;" class="inactive"></td>
+        <td id="kick-7" onclick="toggleChecked('kick-7')" style="background-color: lightblue;" class="inactive"></td>
+        <td id="kick-8" onclick="toggleChecked('kick-8')" style="background-color: lightblue;" class="inactive"></td>
+    </tr>
+    <tr onclick="drums()">
+        <td id="snare-1" onclick="toggleChecked('snare-1')" style="background-color: violet;" class="inactive"></td>
+        <td id="snare-2" onclick="toggleChecked('snare-2')" style="background-color: violet;" class="inactive"></td>
+        <td id="snare-3" onclick="toggleChecked('snare-3')" style="background-color: violet;" class="inactive"></td>
+        <td id="snare-4" onclick="toggleChecked('snare-4')" style="background-color: violet;" class="inactive"></td>
+        <td id="snare-5" onclick="toggleChecked('snare-5')" style="background-color: violet;" class="inactive"></td>
+        <td id="snare-6" onclick="toggleChecked('snare-6')" style="background-color: violet;" class="inactive"></td>
+        <td id="snare-7" onclick="toggleChecked('snare-7')" style="background-color: violet;" class="inactive"></td>
+        <td id="snare-8" onclick="toggleChecked('snare-8')" style="background-color: violet;" class="inactive"></td>
+    </tr>
+    <tr onclick="drums()">
+        <td id="clap-1" onclick="toggleChecked('clap-1')" style="background-color: lightgray;" class="inactive"></td>
+        <td id="clap-2" onclick="toggleChecked('clap-2')" style="background-color: lightgray;" class="inactive"></td>
+        <td id="clap-3" onclick="toggleChecked('clap-3')" style="background-color: lightgray;" class="inactive"></td>
+        <td id="clap-4" onclick="toggleChecked('clap-4')" style="background-color: lightgray;" class="inactive"></td>
+        <td id="clap-5" onclick="toggleChecked('clap-5')" style="background-color: lightgray;" class="inactive"></td>
+        <td id="clap-6" onclick="toggleChecked('clap-6')" style="background-color: lightgray;" class="inactive"></td>
+        <td id="clap-7" onclick="toggleChecked('clap-7')" style="background-color: lightgray;" class="inactive"></td>
+        <td id="clap-8" onclick="toggleChecked('clap-8')" style="background-color: lightgray;" class="inactive"></td>
+    </tr>
+    <tr onclick="drums()">
+        <td id="hihat-1" onclick="toggleChecked('hihat-1')" style="background-color: lightpink;" class="inactive"></td>
+        <td id="hihat-2" onclick="toggleChecked('hihat-2')" style="background-color: lightpink;" class="inactive"></td>
+        <td id="hihat-3" onclick="toggleChecked('hihat-3')" style="background-color: lightpink;" class="inactive"></td>
+        <td id="hihat-4" onclick="toggleChecked('hihat-4')" style="background-color: lightpink;" class="inactive"></td>
+        <td id="hihat-5" onclick="toggleChecked('hihat-5')" style="background-color: lightpink;" class="inactive"></td>
+        <td id="hihat-6" onclick="toggleChecked('hihat-6')" style="background-color: lightpink;" class="inactive"></td>
+        <td id="hihat-7" onclick="toggleChecked('hihat-7')" style="background-color: lightpink;" class="inactive"></td>
+        <td id="hihat-8" onclick="toggleChecked('hihat-8')" style="background-color: lightpink;" class="inactive"></td>
+    </tr>
+    <tr onclick="drums()">
+        <td id="crash-1" onclick="toggleChecked('crash-1')" style="background-color: limegreen;" class="inactive"></td>
+        <td id="crash-2" onclick="toggleChecked('crash-2')" style="background-color: limegreen;" class="inactive"></td>
+        <td id="crash-3" onclick="toggleChecked('crash-3')" style="background-color: limegreen;" class="inactive"></td>
+        <td id="crash-4" onclick="toggleChecked('crash-4')" style="background-color: limegreen;" class="inactive"></td>
+        <td id="crash-5" onclick="toggleChecked('crash-5')" style="background-color: limegreen;" class="inactive"></td>
+        <td id="crash-6" onclick="toggleChecked('crash-6')" style="background-color: limegreen;" class="inactive"></td>
+        <td id="crash-7" onclick="toggleChecked('crash-7')" style="background-color: limegreen;" class="inactive"></td>
+        <td id="crash-8" onclick="toggleChecked('crash-8')" style="background-color: limegreen;" class="inactive"></td>
+    </tr>
+    <tr>
+        <td colspan="4" onclick="drums()" style="text-align: center; background-color: lightblue;"><h1>GO!</h1></td>
+        <td colspan="4" onclick="stopDrums()" style="text-align: center; background-color: lightcoral;"><h1>NO!</h1></td>
+    </tr>
+</table>
 </body>
 </html>

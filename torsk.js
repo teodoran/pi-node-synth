@@ -11,7 +11,7 @@ if ('addEventListener' in document) {
 
 var socket = io();
 
-playSequence = function () {
+var playSequence = function () {
     var value = document.getElementById('chordSequence').value;
     var res = value.split("");
 
@@ -20,19 +20,19 @@ playSequence = function () {
     socket.emit('playSequence', res);
 };
 
-stopSequence = function () {
+var stopSequence = function () {
     socket.emit('stopSequence');
 };
 
-play = function (chord) {
+var play = function (chord) {
     socket.emit('play', chord);
 };
 
-playChord = function (chord) {
+var playChord = function (chord) {
     socket.emit('chord', chord);
 };
 
-transformToArray = function ( res ) {
+var transformToArray = function ( res ) {
     // transform strings to arrays, so we gat a nice format.
     // str: 'aefg' -> [ [a], [e], [f], [g] ]
     var out;
@@ -47,17 +47,38 @@ transformToArray = function ( res ) {
     return res;
 };
 
-drums = function(){
+var drums = function(){
     var pattern = [[], [], [], [], [], [], [], []];
     var notes = ['kick', 'snare', 'clap', 'hihat', 'crash'];
     for (var j = 0; j <= 7; j++){
         for (var i = 0; i <= 4; i++){
             var name = notes[i],
                 checked = document.getElementById(name+"-"+(j+1)).checked;
-            if( checked ){
+            if(checked){
                 pattern[j].push(notes[i]);
             }
         }
     }
     socket.emit('playDrumSequence', pattern);
+};
+
+var toggleChecked = function (id) {
+    var element = document.getElementById(id);
+        checked = element.checked;
+
+    if (checked) {
+        element.checked = false;
+        element.className = "inactive";
+    } else {
+        element.checked = true;
+        element.className = "active";
+    };
+};
+
+var stopDrums = function () {
+    socket.emit('stopDrumSequence');
+};
+
+var toggleDrum = function (x, sound) {
+    var pattern = [[], [], [], [], [], [], [], []];
 };
