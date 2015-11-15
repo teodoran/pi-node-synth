@@ -54,3 +54,33 @@ transformToArray = function ( res ) {
     return res;
 };
 
+drums = function(){
+    var pattern = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0]
+    ];
+    var notes = ['kick', 'snare', 'clap', 'hihat', 'crash'];
+    for (var j = 0; j <= 7; j++){
+        for (var i = 0; i <= 4; i++){
+            var name = notes[i];
+            var checked = document.getElementById(name+"-"+(j+1)).checked;
+            //console.log(name);
+            //console.log(checked);
+            if( checked ){
+                //console.log("checked: "+notes[i]);
+                pattern[j][i] = notes[i];
+            }else{
+                //console.log("unchecked: ''");
+                pattern[j][i] = '';
+            }
+        }
+    }
+    console.log("set the drums:"+pattern);
+    socket.emit('beat', pattern);
+};

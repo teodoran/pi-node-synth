@@ -9,6 +9,9 @@
     <!-- CSS -->
     <link href="/static/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="torsk.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script type="text/javascript" src="torsk.js"></script>
 </head>
 <body>
 
@@ -19,26 +22,80 @@
     </div>
 
     <div class="row marketing">
-        <button type="button" class="btn btn-default torsk-btn col-md-12" onclick="play('kick')">-</button>
-        <button type="button" class="btn btn-default torsk-btn col-md-12" onclick="play('snare')">-</button>
-        <button type="button" class="btn btn-default torsk-btn col-md-12" onclick="play('clap')">-</button>
-        <button type="button" class="btn btn-default torsk-btn col-md-12" onclick="play('hihat')">-</button>
-        <button type="button" class="btn btn-default torsk-btn col-md-12" onclick="play('crash')">-</button>
+        <div class="col-sm-12">
+            <button class="col-sm-12" onclick="drums()">Set rythem</button>
+        </div>
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-default drum-btn col-md-4">Names:</button>
+            <input type="text" class="col-sm-1" name="" value="note 1" readonly/>
+            <input type="text" class="col-sm-1" name="" value="note 2" readonly/>
+            <input type="text" class="col-sm-1" name="" value="note 3" readonly/>
+            <input type="text" class="col-sm-1" name="" value="note 4" readonly/>
+            <input type="text" class="col-sm-1" name="" value="note 5" readonly/>
+            <input type="text" class="col-sm-1" name="" value="note 6" readonly/>
+            <input type="text" class="col-sm-1" name="" value="note 7" readonly/>
+            <input type="text" class="col-sm-1" name="" value="note 8" readonly/>
+        </div>
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-default drum-btn col-md-4" onclick="play('kick')">Kick</button>
+            <input type="checkbox" class="col-sm-1" id="kick-1" />
+            <input type="checkbox" class="col-sm-1" id="kick-2" />
+            <input type="checkbox" class="col-sm-1" id="kick-3" />
+            <input type="checkbox" class="col-sm-1" id="kick-4" />
+            <input type="checkbox" class="col-sm-1" id="kick-5" />
+            <input type="checkbox" class="col-sm-1" id="kick-6" />
+            <input type="checkbox" class="col-sm-1" id="kick-7" />
+            <input type="checkbox" class="col-sm-1" id="kick-8" />
+        </div>
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-default drum-btn col-md-4" onclick="play('snare')">Snare</button>
+            <input type="checkbox" class="col-sm-1" id="snare-1" />
+            <input type="checkbox" class="col-sm-1" id="snare-2" />
+            <input type="checkbox" class="col-sm-1" id="snare-3" />
+            <input type="checkbox" class="col-sm-1" id="snare-4" />
+            <input type="checkbox" class="col-sm-1" id="snare-5" />
+            <input type="checkbox" class="col-sm-1" id="snare-6" />
+            <input type="checkbox" class="col-sm-1" id="snare-7" />
+            <input type="checkbox" class="col-sm-1" id="snare-8" />
+        </div>
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-default drum-btn col-md-4" onclick="play('clap')">Clap</button>
+            <input type="checkbox" class="col-sm-1" id="clap-1" />
+            <input type="checkbox" class="col-sm-1" id="clap-2" />
+            <input type="checkbox" class="col-sm-1" id="clap-3" />
+            <input type="checkbox" class="col-sm-1" id="clap-4" />
+            <input type="checkbox" class="col-sm-1" id="clap-5" />
+            <input type="checkbox" class="col-sm-1" id="clap-6" />
+            <input type="checkbox" class="col-sm-1" id="clap-7" />
+            <input type="checkbox" class="col-sm-1" id="clap-8" />
+        </div>
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-default drum-btn col-md-4" onclick="play('hihat')">Hihat</button>
+            <input type="checkbox" class="col-sm-1" id="hihat-1" />
+            <input type="checkbox" class="col-sm-1" id="hihat-2" />
+            <input type="checkbox" class="col-sm-1" id="hihat-3" />
+            <input type="checkbox" class="col-sm-1" id="hihat-4" />
+            <input type="checkbox" class="col-sm-1" id="hihat-5" />
+            <input type="checkbox" class="col-sm-1" id="hihat-6" />
+            <input type="checkbox" class="col-sm-1" id="hihat-7" />
+            <input type="checkbox" class="col-sm-1" id="hihat-8" />
+        </div>
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-default drum-btn col-md-4" onclick="play('crash')">Crash</button>
+            <input type="checkbox" class="col-sm-1" id="crash-1" />
+            <input type="checkbox" class="col-sm-1" id="crash-2" />
+            <input type="checkbox" class="col-sm-1" id="crash-3" />
+            <input type="checkbox" class="col-sm-1" id="crash-4" />
+            <input type="checkbox" class="col-sm-1" id="crash-5" />
+            <input type="checkbox" class="col-sm-1" id="crash-6" />
+            <input type="checkbox" class="col-sm-1" id="crash-7" />
+            <input type="checkbox" class="col-sm-1" id="crash-8" />
+        </div>
+
+        </div>
+
     </div>
 
 </div>
-<script>
-    if ('addEventListener' in document) {
-        document.addEventListener('DOMContentLoaded', function() {
-            FastClick.attach(document.body);
-        }, false);
-    }
-
-    var socket = io(),
-        play = function (drum) {
-            socket.emit('beat', drum);
-        };
-</script>
 </body>
-
 </html>

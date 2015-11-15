@@ -28,7 +28,17 @@ var express = require('express'),
         'hihat':__dirname + '/samples/hihat-electro.wav',
         'kick': __dirname + '/samples/kick-808.wav',
         'snare': __dirname + '/samples/snare-smasher.wav'
-    };
+    },
+    pattern = [
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0]
+];
 
 app.use('/static', express.static(__dirname + '/node_modules'));
 app.use('/torsk.css', express.static(__dirname + '/torsk.css'));
@@ -43,6 +53,7 @@ app.get('/chords', function (req, res) {
 });
 
 app.get('/drums', function (req, res) {
+    // return the existing pattern.
     res.sendFile(__dirname + '/drums.html');
 });
 
