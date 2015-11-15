@@ -2,32 +2,33 @@
 
 'use strict';
 var express = require('express'),
-	app = express(),
-	http = require('http').Server(app),
-	io = require('socket.io')(http),
-	url = require('url'),
-	shell = require('shelljs'),
+    app = express(),
+    http = require('http').Server(app),
+    io = require('socket.io')(http),
+    url = require('url'),
+    shell = require('shelljs'),
 
-	fork = require('child_process').fork,
-	sequencerProcess = fork(__dirname + '/sequencer-process.js'),
-	
-	port = 3000,
-	chords = {
-		'C': ['C3', 'E3', 'G3'],
-		'Dm': ['D3', 'F3', 'A3'],
-		'Em': ['E3', 'G3', 'B3'],
-		'F': ['F3', 'A3', 'C3'],
-		'G': ['G3', 'B3', 'D3'],
-		'Am': ['A3', 'C3', 'E3']
-	},
+    fork = require('child_process').fork,
+    sequencerProcess = fork(__dirname + '/sequencer-process.js'),
+    arpeggiatorProcess = fork(__dirname + '/arpeggiator-process.js'),
+    
+    port = 3000,
+    chords = {
+        'C': ['C3', 'E3', 'G3'],
+        'Dm': ['D3', 'F3', 'A3'],
+        'Em': ['E3', 'G3', 'B3'],
+        'F': ['F3', 'A3', 'C3'],
+        'G': ['G3', 'B3', 'D3'],
+        'Am': ['A3', 'C3', 'E3']
+    },
 
-	drums = {
-		'clap': __dirname + '/samples/clap-808.wav',
-		'crash': __dirname + '/samples/crash-noise.wav',
-		'hihat':__dirname + '/samples/hihat-electro.wav',
-		'kick': __dirname + '/samples/kick-808.wav',
-		'snare': __dirname + '/samples/snare-smasher.wav'
-	};
+    drums = {
+        'clap': __dirname + '/samples/clap-808.wav',
+        'crash': __dirname + '/samples/crash-noise.wav',
+        'hihat':__dirname + '/samples/hihat-electro.wav',
+        'kick': __dirname + '/samples/kick-808.wav',
+        'snare': __dirname + '/samples/snare-smasher.wav'
+    };
 
 app.use('/static', express.static(__dirname + '/node_modules'));
 app.use('/torsk.css', express.static(__dirname + '/torsk.css'));
@@ -76,16 +77,32 @@ io.on('connection', function (socket){
         var p = msg;
         console.log(p);
 
-		sequencerProcess.send({
-			pattern: p,
-			start: true
-		});
+        arpeggiatorProcess.send({
+            pattern: p,
+            start: true
+        });
     });
 
-    socket.on('stopSequence', function (msg) {
+    socket.on('stopSequence', function () {
+        arpeggiatorProcess.send({
+            stop: true
+        });
+    });
+
+    socket.on('playDrumSequence', function (msg) {
+        var p = msg;
+        console.log(p);
+
         sequencerProcess.send({
-			stop: true
-		});
+            pattern: p,
+            start: true
+        });
+    });
+
+    socket.on('stopDrumSequence', function (msg) {
+        sequencerProcess.send({
+            stop: true
+        });
     });
 
     socket.on('disconnect', function() {
@@ -102,48 +119,48 @@ app.get('/api', function (req, res) {
 });
 
 app.get('/start', function (req, res) {
-	var p = [
-		['hihat', 'kick'],
-		['hihat'],
-		['hihat', 'snare'],
-		['hihat'],
-		['hihat'],
-		['hihat', 'kick'],
-		['hihat', 'snare'],
-		['hihat']
-	];
+    var p = [
+        ['hihat', 'kick'],
+        ['hihat'],
+        ['hihat', 'snare'],
+        ['hihat'],
+        ['hihat'],
+        ['hihat', 'kick'],
+        ['hihat', 'snare'],
+        ['hihat']
+    ];
 
-	sequencerProcess.send({
-		pattern: p,
-		start: true
-	});
-	res.status(200).send('Started sequencer pattern 1');
+    sequencerProcess.send({
+        pattern: p,
+        start: true
+    });
+    res.status(200).send('Started sequencer pattern 1');
 });
 
 app.get('/start2', function (req, res) {
-	var p = [
-		['hihat', 'kick', 'crash'],
-		['hihat'],
-		['hihat', 'snare'],
-		['hihat'],
-		['hihat'],
-		['hihat', 'kick'],
-		['hihat', 'snare'],
-		['hihat']
-	];
+    var p = [
+        ['hihat', 'kick', 'crash'],
+        ['hihat'],
+        ['hihat', 'snare'],
+        ['hihat'],
+        ['hihat'],
+        ['hihat', 'kick'],
+        ['hihat', 'snare'],
+        ['hihat']
+    ];
 
-	sequencerProcess.send({
-		pattern: p,
-		start: true
-	});
-	res.status(200).send('Started sequencer pattern 1');
+    sequencerProcess.send({
+        pattern: p,
+        start: true
+    });
+    res.status(200).send('Started sequencer pattern 1');
 });
 
 app.get('/stop', function (req, res) {
-	sequencerProcess.send({
-		stop: true
-	});
-	res.status(200).send('Stopping sequencer');
+    sequencerProcess.send({
+        stop: true
+    });
+    res.status(200).send('Stopping sequencer');
 });
 
 http.listen(port, function () {

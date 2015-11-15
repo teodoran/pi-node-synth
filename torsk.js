@@ -22,6 +22,10 @@ playSequence = function () {
     socket.emit('playSequence', res);
 };
 
+stopSequence = function () {
+    socket.emit('stopSequence');
+};
+
 play = function (chord) {
     console.log("play!");
     socket.emit('play', chord);
@@ -36,16 +40,16 @@ transformToArray = function ( res ) {
     // transform strings to arrays, so we gat a nice format.
     // str: 'aefg' -> [ [a], [e], [f], [g] ]
     var out;
-    for ( var chord in res ) {
-        if ( typeof res[chord] === 'string' ) {
+    for ( var note in res ) {
+        if ( typeof res[note] === 'string' ) {
             //console.log("not an array");
-            out = [ res[chord] ];
+            out = [ res[note].toUpperCase() ];
         } else {
             //console.log("already an array");
-            out = res[chord];
+            out = res[note];
         }
         //console.log(out);
-        res[chord] = out;
+        res[note] = out;
     }
     return res;
 };

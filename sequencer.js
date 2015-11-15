@@ -10,13 +10,14 @@ var Sequencer = function () {
 		bpm = 120,
 	    sounds = {},
 		pattern = [],
+		playCmd = 'play -q ',
 
 		timeout = function (bpm) {
 			return (60 * 1000) / (bpm * 2);
 		},
 
 		play = function (sound) {
-			var command = 'play -q ' + sounds[sound];
+			var command = playCmd + sounds[sound];
 
 			shell.exec(command, {async: true, silent: true});
 		},
@@ -51,6 +52,11 @@ var Sequencer = function () {
 
 	self.pattern = function (newPattern) {
 		pattern = newPattern;
+		return self;
+	};
+
+	self.playCmd = function (newPlayCmd) {
+		playCmd = newPlayCmd;
 		return self;
 	};
 
