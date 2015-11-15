@@ -11,7 +11,10 @@
     "type": "git",
     "url": "https://github.com/teodoran/pi-node-synth"
   },
-  "author": "teodoran",
+  "authors": [
+    "Teodor Ande Elstad <teodor@andeelstad.com>",
+    "Magnus Kirø <magnuskiro@gmail.com>"
+  ],
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^3.3.5",
