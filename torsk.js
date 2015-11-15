@@ -12,9 +12,7 @@ if ('addEventListener' in document) {
 var socket = io();
 
 playSequence = function () {
-    console.log("sequence!");
     var value = document.getElementById('chordSequence').value;
-    console.log(value);
     var res = value.split("");
 
     res = transformToArray(res);
@@ -27,12 +25,10 @@ stopSequence = function () {
 };
 
 play = function (chord) {
-    console.log("play!");
     socket.emit('play', chord);
 };
 
 playChord = function (chord) {
-    console.log("chord!");
     socket.emit('chord', chord);
 };
 
@@ -42,45 +38,26 @@ transformToArray = function ( res ) {
     var out;
     for ( var note in res ) {
         if ( typeof res[note] === 'string' ) {
-            //console.log("not an array");
             out = [ res[note].toUpperCase() ];
         } else {
-            //console.log("already an array");
             out = res[note];
         }
-        //console.log(out);
         res[note] = out;
     }
     return res;
 };
 
 drums = function(){
-    var pattern = [
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0]
-    ];
+    var pattern = [[], [], [], [], [], [], [], []];
     var notes = ['kick', 'snare', 'clap', 'hihat', 'crash'];
     for (var j = 0; j <= 7; j++){
         for (var i = 0; i <= 4; i++){
-            var name = notes[i];
-            var checked = document.getElementById(name+"-"+(j+1)).checked;
-            //console.log(name);
-            //console.log(checked);
+            var name = notes[i],
+                checked = document.getElementById(name+"-"+(j+1)).checked;
             if( checked ){
-                //console.log("checked: "+notes[i]);
-                pattern[j][i] = notes[i];
-            }else{
-                //console.log("unchecked: ''");
-                pattern[j][i] = '';
+                pattern[j].push(notes[i]);
             }
         }
     }
-    console.log("set the drums:"+pattern);
     socket.emit('playDrumSequence', pattern);
 };

@@ -101,7 +101,6 @@ io.on('connection', function (socket){
 
     socket.on('playDrumSequence', function (msg) {
         var p = msg;
-        console.log(p);
 
         sequencerProcess.send({
             pattern: p,
