@@ -14,23 +14,15 @@
     <script type="text/javascript" src="torsk.js"></script>
 </head>
 <body>
-<div class="container">
-
-    <div>
-        <h1>Torsk-Chords! Play for Lofoten :)</h1>
-    </div>
-
-    <div class="row marketing">
-        <div class="row">
-            <button type="button" class="btn btn-default torsk-btn col-md-6 col-xs-6" style="background: #006666" onclick="playChord('C')">C</button>
-            <button type="button" class="btn btn-default torsk-btn col-md-6 col-xs-6" style="background: #666699" onclick="playChord('G')">G</button>
-        </div>
-        <div class="row">
-            <button type="button" class="btn btn-default torsk-btn col-md-6 col-xs-6" style="background: #993333" onclick="playChord('Am')">Am</button>
-            <button type="button" class="btn btn-default torsk-btn col-md-6 col-xs-6" style="background: #666666;" onclick="playChord('F')">F</button>
-        </div>
-    </div>
-
-</div>
+<table>
+    <tr>
+        <td onclick="playChord('C')" style="background-color: lightblue;" class="inactive"></td>
+        <td onclick="playChord('G')" style="background-color: violet;" class="inactive"></td>
+    </tr>
+    <tr>
+        <td onclick="playChord('Am')" style="background-color: limegreen;" class="inactive"></td>
+        <td onclick="playChord('F')" style="background-color: lightgray;" class="inactive"></td>
+    </tr>
+</table>
 </body>
 </html>
