@@ -10,8 +10,6 @@ An experiment playing linux synth sounds from a web server.
 * sudo npm install -g node-gyp
 * npm install
 * npm start
-* http://localhost:3000/?C
+* http://localhost:3000/ (refresh for more instruments)
 
-### PI practicals: 
-* user: pi
-* pw: torsk
+The drum sampler requiers some drum sample audio files. They are not included, so substitute them with your own samples.
